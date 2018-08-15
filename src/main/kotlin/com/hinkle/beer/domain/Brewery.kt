@@ -6,10 +6,10 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Brewery{
-    var name = "";
-    var location = "";
-    var yearFounded = ""
+data class Brewery(
+    var name: String,
+    var location: String,
+    var yearFounded: String,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long = 0;
-}
+    var id: Long? = 0
+)

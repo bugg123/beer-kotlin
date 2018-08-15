@@ -7,12 +7,11 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Beer{
-    var brewery = ""
-    var name = ""
-    var style = BeerStyles.NONE
+data class Beer(
+    var brewery: String,
+    var name: String,
+    var style: BeerStyles,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long = 0;
-
-}
+    var id: Long? = 0
+)
 
