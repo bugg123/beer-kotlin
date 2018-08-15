@@ -8,7 +8,7 @@ import javax.persistence.Id
 
 @Entity
 class Beer{
-    private var brewery = ""
+    var brewery = ""
     var name = ""
     var style = BeerStyles.NONE
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
