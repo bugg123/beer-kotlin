@@ -4,7 +4,6 @@
 # Gradle files
 .gradle
 /build/
-!gradle/wrapper/gradle-wrapper.jar
 **/out/
 
 # Log file
