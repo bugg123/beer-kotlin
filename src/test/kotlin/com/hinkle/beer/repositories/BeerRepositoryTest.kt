@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
 internal class BeerRepositoryTest(@Autowired val entityManager: TestEntityManager,
-                         @Autowired val beerRepository: BeerRepository) {
+                                  @Autowired val beerRepository: BeerRepository) {
   @Test
   fun `When findByStyle then return beer`() {
     val funkyBuddha = Brewery("Funky Buddha", "Oakland Park, FL", 2010)

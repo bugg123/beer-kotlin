@@ -13,32 +13,32 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
 internal class BreweryRepositoryTest(@Autowired val entityManager: TestEntityManager,
-                            @Autowired val breweryRepository: BreweryRepository){
+                                     @Autowired val breweryRepository: BreweryRepository) {
 
-    @Test
-    fun `When findByLocation then return brewery`(){
-        val threeFloyds = Brewery("3 Floyds", "Chicago, IL", 1996)
-        val fakeBrewery = Brewery("fake","fake",2000)
+  @Test
+  fun `When findByLocation then return brewery`() {
+    val threeFloyds = Brewery("3 Floyds", "Chicago, IL", 1996)
+    val fakeBrewery = Brewery("fake", "fake", 2000)
 
-        entityManager.persistAndFlush(threeFloyds)
+    entityManager.persistAndFlush(threeFloyds)
 
-        val foundThreeFloyds = breweryRepository.findByLocation("Chicago, IL")
-
-
-        assertTrue(foundThreeFloyds.contains(threeFloyds))
-        assertFalse(foundThreeFloyds.contains(fakeBrewery))
-    }
-
-    @Test
-    fun `When findByYearFounded then return brewery`(){
-        val funkyBuddha = Brewery("Funky Buddha","Oakland Park, Fl", 2010)
-
-        entityManager.persistAndFlush(funkyBuddha)
+    val foundThreeFloyds = breweryRepository.findByLocation("Chicago, IL")
 
 
-        val foundFunkyBuddha = breweryRepository.findByYearFounded(2010)
+    assertTrue(foundThreeFloyds.contains(threeFloyds))
+    assertFalse(foundThreeFloyds.contains(fakeBrewery))
+  }
 
-        assertTrue(foundFunkyBuddha.contains(funkyBuddha))
+  @Test
+  fun `When findByYearFounded then return brewery`() {
+    val funkyBuddha = Brewery("Funky Buddha", "Oakland Park, Fl", 2010)
 
-    }
+    entityManager.persistAndFlush(funkyBuddha)
+
+
+    val foundFunkyBuddha = breweryRepository.findByYearFounded(2010)
+
+    assertTrue(foundFunkyBuddha.contains(funkyBuddha))
+
+  }
 }
