@@ -1,17 +1,16 @@
 package com.hinkle.beer.domain
 
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Beer(
-    var brewery: String,
-    var name: String,
-    var style: BeerStyles,
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = 0
+        @OneToOne
+        var brewery: Brewery,
+        var name: String,
+        @Enumerated
+        var style: BeerStyles,
+        @Id @GeneratedValue(strategy = GenerationType.AUTO)
+        var id: Long? = 0
 )
 
