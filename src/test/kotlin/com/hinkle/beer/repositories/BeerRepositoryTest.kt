@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
-class BeerRepositoryTest(@Autowired val entityManager: TestEntityManager,
+internal class BeerRepositoryTest(@Autowired val entityManager: TestEntityManager,
                          @Autowired val beerRepository: BeerRepository) {
   @Test
   fun `When findByStyle then return beer`() {

@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface BeerRepository : CrudRepository<Beer, Long> {
 
-    fun findByStyle(style: BeerStyles): Set<Beer>
+  fun findByStyle(style: BeerStyles): Set<Beer>
 }

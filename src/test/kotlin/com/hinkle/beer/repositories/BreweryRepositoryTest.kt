@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
-class BreweryRepositoryTest(@Autowired val entityManager: TestEntityManager,
+internal class BreweryRepositoryTest(@Autowired val entityManager: TestEntityManager,
                             @Autowired val breweryRepository: BreweryRepository){
 
     @Test

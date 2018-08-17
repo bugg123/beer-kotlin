@@ -1,18 +1,19 @@
 package com.hinkle.beer.controllers
 
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.ui.set
+import com.hinkle.beer.domain.Beer
+import com.hinkle.beer.repositories.BeerRepository
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
-class BeerController{
+@RestController
+class BeerController(private val beerRepository: BeerRepository){
 
-    @GetMapping("/")
-    fun blog(model: Model): String {
-        model["title"] = "Beer"
-        return "beer"
-    }
+  @GetMapping("/")
+  fun getAllBeer(): Iterable<Beer> = beerRepository.findAll()
+
+  @GetMapping("/{id}")
+  fun getBeerById(@PathVariable id: Long) = beerRepository.findById(id)
 
 }
 
