@@ -7,9 +7,9 @@ import javax.persistence.Id
 
 @Entity
 data class Brewery(
-    var name: String,
-    var location: String,
-    var yearFounded: Int,
+    var name: String = "",
+    var location: String = "",
+    var yearFounded: Int = 0,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = 0
 )
