@@ -9,7 +9,7 @@ data class Beer(
     @Enumerated
     var style: BeerStyles = BeerStyles.NONE,
     var abv: Double = 0.0,
-    var ibu: Double = 0.0,
+    var ibu: Double? = 0.0,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = 0,
 //    @OneToOne

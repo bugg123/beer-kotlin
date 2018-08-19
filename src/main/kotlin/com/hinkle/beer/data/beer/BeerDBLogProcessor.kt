@@ -1,4 +1,4 @@
-package com.hinkle.beer.data
+package com.hinkle.beer.data.beer
 
 import com.hinkle.beer.domain.Beer
 import org.springframework.batch.item.ItemProcessor

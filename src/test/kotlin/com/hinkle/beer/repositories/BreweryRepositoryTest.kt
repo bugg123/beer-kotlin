@@ -17,28 +17,28 @@ internal class BreweryRepositoryTest(@Autowired val entityManager: TestEntityMan
 
   @Test
   fun `When findByLocation then return brewery`() {
-    val threeFloyds = Brewery("3 Floyds", "Chicago, IL", 1996)
-    val fakeBrewery = Brewery("fake", "fake", 2000)
+    val threeFloyds = Brewery("3 Floyds", "Chicago, IL")
+    val fakeBrewery = Brewery("fake", "fake")
 
     entityManager.persistAndFlush(threeFloyds)
 
-    val foundThreeFloyds = breweryRepository.findByLocation("Chicago, IL")
+    val foundThreeFloyds = breweryRepository.findByState("Chicago, IL")
 
 
     assertTrue(foundThreeFloyds.contains(threeFloyds))
     assertFalse(foundThreeFloyds.contains(fakeBrewery))
   }
 
-  @Test
-  fun `When findByYearFounded then return brewery`() {
-    val funkyBuddha = Brewery("Funky Buddha", "Oakland Park, Fl", 2010)
-
-    entityManager.persistAndFlush(funkyBuddha)
-
-
-    val foundFunkyBuddha = breweryRepository.findByYearFounded(2010)
-
-    assertTrue(foundFunkyBuddha.contains(funkyBuddha))
-
-  }
+//  @Test
+//  fun `When findByYearFounded then return brewery`() {
+//    val funkyBuddha = Brewery("Funky Buddha", "Oakland Park, Fl")
+//
+//    entityManager.persistAndFlush(funkyBuddha)
+//
+//
+//    val foundFunkyBuddha = breweryRepository.findByYearFounded(2010)
+//
+//    assertTrue(foundFunkyBuddha.contains(funkyBuddha))
+//
+//  }
 }

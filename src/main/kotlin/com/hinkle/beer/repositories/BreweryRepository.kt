@@ -4,7 +4,7 @@ import com.hinkle.beer.domain.Brewery
 import org.springframework.data.repository.CrudRepository
 
 interface BreweryRepository : CrudRepository<Brewery, Long> {
-  fun findByLocation(location: String): MutableSet<Brewery>
-  fun findByYearFounded(year: Int): MutableSet<Brewery>
+  fun findByState(state: String): MutableSet<Brewery>
+
 
 }

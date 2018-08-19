@@ -1,4 +1,4 @@
-package com.hinkle.beer.data
+package com.hinkle.beer.data.beer
 
 import com.hinkle.beer.domain.Beer
 import org.springframework.batch.core.Job
@@ -49,23 +49,20 @@ class BeerBatchConfig {
         .build()
   }
 
-  @Bean
   fun step(): Step {
     return stepBuilderFactory
         .get("step")
         .chunk<Beer, Beer>(5)
         .reader(reader())
         .processor(processor())
-        .writer(writer())
+        .writer(beerWriter())
         .build()
   }
 
-  @Bean
   fun processor(): ItemProcessor<Beer, Beer> {
     return BeerDBLogProcessor()
   }
 
-  @Bean
   fun reader(): FlatFileItemReader<Beer> {
     val itemReader = FlatFileItemReader<Beer>()
     itemReader.setLineMapper(lineMapper())
@@ -74,7 +71,6 @@ class BeerBatchConfig {
     return itemReader
   }
 
-  @Bean
   fun lineMapper(): LineMapper<Beer> {
     val lineMapper = DefaultLineMapper<Beer>()
     val lineTokenizer = DelimitedLineTokenizer()
@@ -88,10 +84,10 @@ class BeerBatchConfig {
   }
 
   @Bean
-  fun writer(): JdbcBatchItemWriter<Beer> {
+  fun beerWriter(): JdbcBatchItemWriter<Beer> {
     val itemWriter = JdbcBatchItemWriter<Beer>()
     itemWriter.setDataSource(beerDataSource())
-    itemWriter.setSql("INSERT INTO BEER (ID, BREWERY_ID, NAME, ABV) VALUES (:id, :breweryID, :name, :abv)")
+    itemWriter.setSql("INSERT INTO BEER (ID, BREWERYID, NAME, ABV) VALUES (:id, :breweryID, :name, :abv)")
     itemWriter.setItemSqlParameterSourceProvider(BeanPropertyItemSqlParameterSourceProvider<Beer>())
     return itemWriter
   }
@@ -99,7 +95,6 @@ class BeerBatchConfig {
   fun beerDataSource(): DataSource {
     return EmbeddedDatabaseBuilder().addScript("classpath:org/springframework/batch/core/schema-drop-h2.sql")
         .addScript("classpath:org/springframework/batch/core/schema-h2.sql")
-        .addScript("classpath:beer.sql")
         .setType(EmbeddedDatabaseType.H2)
         .build()
   }
